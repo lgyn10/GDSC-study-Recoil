@@ -2,18 +2,16 @@ import React, {useState} from 'react';
 import {useRecoilState} from 'recoil';
 import {numAtom} from '../Atom/Atom';
 import type * as atomTypes from '../Atom/Atom';
+import {useNavigate} from 'react-router';
 
-type Props = {
-  onButtonClick: () => void;
-};
-
-const InputNums = ({onButtonClick}: Props) => {
+const InputNums = () => {
+  const navigate = useNavigate();
   const [nums, setNums] = useRecoilState(numAtom);
   const [inputNums, setInputNums] = useState<atomTypes.nums>({num1: 0, num2: 0});
   const onClick = () => {
     setNums({...inputNums});
     setInputNums({num1: 0, num2: 0});
-    onButtonClick();
+    navigate('/result');
   };
   return (
     <article>
